@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <textarea id = "laby"></textarea>
+    <div>
+        <input type="range" id="speed" name="speed" onchange="changeSpeed(this.value)"
+                min="1" max="100" value="1">
+        <label for="speed">Speed</label>
+    </div>
+    <div>
+        <input type="radio" name="algo" onclick="changeAlgo('A*')">
+        <label>A*</label>
+    
+        <input type="radio" name="algo" onclick="changeAlgo('DFS')" checked>
+        <label >DFS</label>
+    </div>
+    <p><button onclick="pause()">Pause</button></p>
+    <p><button onclick="solve()">Solve</button></p>
+    <p id="timeSolve"> Real solving time : </p>
+    <canvas width="1920" height="1080" id="canvas"></canvas>
+</body>
+<script src="./main.js"></script>
+</html>
