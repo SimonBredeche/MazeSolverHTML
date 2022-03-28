@@ -147,6 +147,12 @@ function recursiveSolveAStar(posX,posY,path){
         let right = Math.sqrt(Math.pow(endX-posX+1,2) + Math.pow(endY-posY,2))
         let down = Math.sqrt(Math.pow(endX-posX,2)   + Math.pow(endY-posY-1,2))
         let up = Math.sqrt(Math.pow(endX-posX,2)   + Math.pow(endY-posY+1,2))
+
+        let upleft = Math.sqrt(Math.pow(endX-posX-1,2) + Math.pow(endY-posY-1,2))
+        let upright = Math.sqrt(Math.pow(endX-posX+1,2) + Math.pow(endY-posY-1,2))
+        let downleft = Math.sqrt(Math.pow(endX-posX-1,2)   + Math.pow(endY-posY+1,2))
+        let downRight = Math.sqrt(Math.pow(endX-posX+1,2)   + Math.pow(endY-posY+1,2))
+
         addSearchNode(posX,posY);
         tmpArr.push({
             value : left,
@@ -166,6 +172,26 @@ function recursiveSolveAStar(posX,posY,path){
         tmpArr.push({
             value : up,
             dx: 0,
+            dy: +1
+        });
+        tmpArr.push({
+            value : upleft,
+            dx: -1,
+            dy: -1
+        });
+        tmpArr.push({
+            value : upright,
+            dx: +1,
+            dy: -1
+        });
+        tmpArr.push({
+            value : downleft,
+            dx: -1,
+            dy: +1
+        });
+        tmpArr.push({
+            value : downRight,
+            dx: +1,
             dy: +1
         });
         tmpArr = tmpArr.sort(function(a, b){return a.value - b.value})
