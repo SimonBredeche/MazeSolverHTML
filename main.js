@@ -145,8 +145,9 @@ function recursiveSolveAStar(posX,posY,path){
         for(let i = -1; i <= 1; i++){
             for(let j = -1; j <= 1; j++){
                 if(!(i == 0 && j==0)){
-                    let dist = Math.sqrt(Math.pow(endX-posX+i,2) + Math.pow(endY-posY+j,2))
+                    let dist = Math.sqrt(Math.pow((endX*10)-(posX+i)*10,2) + Math.pow((endY*10)-(posY+j)*10,2)) 
                     if(inBound(posX+i,posY+j) && solvingboard[posX+i][posY+j] == ' '){
+                        solvingboardDist[posX+i][posY+j] = dist;
                         orderSearch.push({x:posX+i,y:posY+j,search:true});
                     }
                     tmpArr.push({
@@ -158,7 +159,7 @@ function recursiveSolveAStar(posX,posY,path){
             }
         }
         tmpArr = tmpArr.sort(function(a, b){return a.value - b.value})
-        for(let i = tmpArr.length-1; i >= 0;i--){
+        for(let i = 0; i < tmpArr.length;i++){
             let data = tmpArr[i];
             if(recursiveSolveAStar(posX+data.dx,posY+data.dy,path)){
                 path.push({x:posX,y:posY})
