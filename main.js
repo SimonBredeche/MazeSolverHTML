@@ -142,58 +142,21 @@ function recursiveSolveAStar(posX,posY,path){
         solvingboard[posX][posY] = 'O';
         orderSearch.push({x:posX,y:posY,search:false});
         let tmpArr = [];
-
-        let left = Math.sqrt(Math.pow(endX-posX-1,2) + Math.pow(endY-posY,2))
-        let right = Math.sqrt(Math.pow(endX-posX+1,2) + Math.pow(endY-posY,2))
-        let down = Math.sqrt(Math.pow(endX-posX,2)   + Math.pow(endY-posY-1,2))
-        let up = Math.sqrt(Math.pow(endX-posX,2)   + Math.pow(endY-posY+1,2))
-
-        let upleft = Math.sqrt(Math.pow(endX-posX-1,2) + Math.pow(endY-posY-1,2))
-        let upright = Math.sqrt(Math.pow(endX-posX+1,2) + Math.pow(endY-posY-1,2))
-        let downleft = Math.sqrt(Math.pow(endX-posX-1,2)   + Math.pow(endY-posY+1,2))
-        let downRight = Math.sqrt(Math.pow(endX-posX+1,2)   + Math.pow(endY-posY+1,2))
-
-        addSearchNode(posX,posY);
-        tmpArr.push({
-            value : left,
-            dx: -1,
-            dy: 0
-        });
-        tmpArr.push({
-            value : right,
-            dx: +1,
-            dy: 0
-        });
-        tmpArr.push({
-            value : down,
-            dx: 0,
-            dy: -1
-        });
-        tmpArr.push({
-            value : up,
-            dx: 0,
-            dy: +1
-        });
-        tmpArr.push({
-            value : upleft,
-            dx: -1,
-            dy: -1
-        });
-        tmpArr.push({
-            value : upright,
-            dx: +1,
-            dy: -1
-        });
-        tmpArr.push({
-            value : downleft,
-            dx: -1,
-            dy: +1
-        });
-        tmpArr.push({
-            value : downRight,
-            dx: +1,
-            dy: +1
-        });
+        for(let i = -1; i <= 1; i++){
+            for(let j = -1; j <= 1; j++){
+                if(!(i == 0 && j==0)){
+                    let dist = Math.sqrt(Math.pow(endX-posX+i,2) + Math.pow(endY-posY+j,2))
+                    if(inBound(posX+i,posY+j) && solvingboard[posX+i][posY+j] == ' '){
+                        orderSearch.push({x:posX+i,y:posY+j,search:true});
+                    }
+                    tmpArr.push({
+                        value : dist,
+                        dx: i,
+                        dy: j
+                    });
+                }
+            }
+        }
         tmpArr = tmpArr.sort(function(a, b){return a.value - b.value})
         for(let i = tmpArr.length-1; i >= 0;i--){
             let data = tmpArr[i];
