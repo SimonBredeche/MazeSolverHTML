@@ -20,6 +20,26 @@
         <input type="radio" name="algo" onclick="changeAlgo('DFS')" checked>
         <label >DFS</label>
     </div>
+    <h3>Template</h3>
+    <div>
+        <input type="radio" name="template" onclick="readTextFile('o1.txt')">
+        <label>oval</label>
+
+        <input type="radio" name="template" onclick="readTextFile('r1.txt')">
+        <label>Rect1</label>
+
+        <input type="radio" name="template" onclick="readTextFile('r2.txt')">
+        <label>Rect2</label>
+
+        <input type="radio" name="template" onclick="readTextFile('r3.txt')">
+        <label>Rect3</label>
+
+        <input type="radio" name="template" onclick="readTextFile('r4.txt')">
+        <label>Rect4</label>
+
+        <input type="radio" name="template" onclick="readTextFile('r5.txt')">
+        <label>Rect5</label>
+    </div>
     <p><button onclick="pause()">Pause</button></p>
     <p><button onclick="solve()">Solve</button></p>
     <p id="timeSolve"> Real solving time : </p>

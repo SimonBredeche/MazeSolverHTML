@@ -21,6 +21,24 @@ let currentIndexPath = 0;
 let path = [];
 let algorithm = "DFS"
 let SPEED = 1;
+
+function readTextFile(file)
+{
+    let rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                document.getElementById("laby").value = rawFile.responseText;
+            }
+        }
+    }
+    rawFile.send(null);
+}
+
 function generateBoard(){
     for(let i = 0; i < WIDTH; i++){
         board[i] = [];
@@ -187,6 +205,9 @@ function addSearchNode(posX,posY){
 }
 
 function recursiveSolve(posX,posY,path){
+    if(!inBound(posX,posY)){
+        return false;
+    }
     if(solvingboard[posX][posY] == '2'){
         path.push({x:posX,y:posY})
         return true;
